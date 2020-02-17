@@ -6,7 +6,7 @@ from config_variable import logger
 blueprint = Blueprint('api', __name__)
 algorithm = Api(blueprint, doc='/swagger')
 
-algorithm = algorithm.namespace('', description='Algorithm Service')
+programmers = algorithm.namespace('programmers', description='programmers Service')
 
 @blueprint.before_request
 def requestauth(*args, **kwargs):
