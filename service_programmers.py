@@ -1,3 +1,5 @@
+from config_variable import logger
+
 class HashAlgorithm:
     '''
     코딩테스트 연습 - 해시
@@ -37,9 +39,24 @@ class HashAlgorithm:
         :return:
         '''
 
-        participant.sort()
-        completion.sort()
-        for i, j in zip(participant, completion):
-            if i != j:
-                return (i)
-        return participant[-1]
+        resultRest = dict()
+
+        try:
+            logger.info("Marathon job start. Participant=" + str(participant) + ", Completion=" + str(completion))
+
+            resultRest['participant'] = str(participant)
+            resultRest['completion'] = str(completion)
+
+            participant.sort()
+            completion.sort()
+
+            for i, j in zip(participant, completion):
+                if i != j:
+                    resultRest['result'] = str(i)
+                    return resultRest
+
+            resultRest['result'] = str(participant[-1])
+            return resultRest
+        except:
+            logger.error("Marathon job error. Participant=" + str(participant) + ", Completion=" + str(completion))
+            return
