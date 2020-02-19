@@ -1,6 +1,16 @@
 from flask_restplus import fields
 from flaskencodeparser import FlaskModel
 
+class BiggestNumberModel(object):
+    def __init__(self, ns):
+
+        primodel = {
+            'numbers': fields.String(default='all', required=True, example="[6,10,2]"),
+            'result': fields.String(default='all', required=True, example='6210')
+        }
+
+        self.get = FlaskModel(self, ns, 'get', {**primodel})
+
 class MarthonModel(object):
     def __init__(self, ns):
 

@@ -4,29 +4,39 @@ import secrets
 
 from marshmallow import fields
 from rest import programmers
-from mgr_programmers import MarthonModel
+from mgr_programmers import MarthonModel, BiggestNumberModel
 from config_variable import logger
 from flask_restplus.resource import Resource
 from webargs.flaskparser import use_kwargs
 from flask import request
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
-from service_programmers import HashAlgorithm
+from service_programmers import HashAlgorithm, Sorting
 from time import gmtime, strftime
 
+#Sorting
+biggestModel = BiggestNumberModel(programmers)
+
+#Hash
 marathonModel = MarthonModel(programmers)
 
-@programmers.route('/', methods=['GET'])
-class ReturnAllURL(Resource):
-    '''
-    존재하는 모든 api 접근 url 반환하는 서비스
-    '''
-    @programmers.doc(description='존재하는 모든 api의 접근 url을 반환합니다.')
-    def get(self):
-        result_allurl = {
-            'all_services': "/algorithm",
-        }
-        return result_allurl
+@programmers.route('/sorting/biggestnumber', methods=['GET'])
+class ReturnBiggestNumber(Resource):
+    @programmers.doc(description='가장 큰 수 문제, '
+                                 'https://programmers.co.kr/learn/courses/30/lessons/42746')
+    @programmers.param('numbers', '입력할 정수 리스트', _in='query', type=str, required=True, default="[6,10,2]")
+    @use_kwargs({
+        'numbers': fields.Str(required=True, location='query')
+    })
+    @programmers.marshal_with(biggestModel.get.model, code=200, mask=False)
+    def get(self, numbers):
+        sorting = Sorting()
+
+        numbers = numbers[1:-1].split(",")
+        result = sorting.biggestNumber(numbers)
+
+        return result
+
 
 @programmers.route('/hash/marathon', methods=['GET'])
 class ReturnAllChallenges(Resource):
