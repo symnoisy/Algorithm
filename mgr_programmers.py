@@ -11,6 +11,7 @@ class BiggestNumberModel(object):
 
         self.get = FlaskModel(self, ns, 'get', {**primodel})
 
+
 class MarthonModel(object):
     def __init__(self, ns):
 
@@ -22,3 +23,13 @@ class MarthonModel(object):
 
         self.get = FlaskModel(self, ns, 'get', {**primodel})
 
+
+class PhoneBookModel(object):
+    def __init__(self, ns):
+
+        primodel = {
+            'phoneBook': fields.String(default='all', required=True, example="[119,97674223,1195524421]"),
+            'result': fields.String(default='all', required=True, example='eden')
+        }
+
+        self.get = FlaskModel(self, ns, 'get', {**primodel})

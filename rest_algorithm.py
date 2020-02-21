@@ -4,7 +4,7 @@ import secrets
 
 from marshmallow import fields
 from rest import programmers
-from mgr_programmers import MarthonModel, BiggestNumberModel
+from mgr_programmers import BiggestNumberModel, MarthonModel, PhoneBookModel
 from config_variable import logger
 from flask_restplus.resource import Resource
 from webargs.flaskparser import use_kwargs
@@ -19,6 +19,7 @@ biggestModel = BiggestNumberModel(programmers)
 
 #Hash
 marathonModel = MarthonModel(programmers)
+phoneBookModel = PhoneBookModel(programmers)
 
 @programmers.route('/sorting/biggestnumber', methods=['GET'])
 class ReturnBiggestNumber(Resource):
@@ -58,4 +59,24 @@ class ReturnAllChallenges(Resource):
         completion = completion[1:-1].split(",")
 
         result = hashalgorithm.marathon(participant, completion)
+        return result
+
+
+@programmers.route('/hash/phonebook', methods=['GET'])
+class ReturnAllChallenges(Resource):
+    @programmers.doc(description='전화번호부 문제, '
+                                 'https://programmers.co.kr/learn/courses/30/lessons/42577?language=python3')
+
+    @programmers.param('phoneBook', '전화번호부', _in = 'query', type = str, required = True, default = "[119,97674223,1195524421]")
+    @use_kwargs({
+        'phoneBook': fields.Str(required=True, location='query')
+    })
+    @programmers.marshal_with(phoneBookModel.get.model, code=200, mask=False)
+
+    def get(self, phoneBook):
+        hashalgorithm = HashAlgorithm()
+
+        phoneBook = phoneBook[1:-1].split(",")
+
+        result = hashalgorithm.phoneBook(phoneBook)
         return result
