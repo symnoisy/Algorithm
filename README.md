@@ -1,7 +1,8 @@
 # AlgorithmService
 알고리즘 문제를 풀이하고 REST API로 서비스를 개발합니다.
-- symnoisy@gmail.com
-- https://www.linkedin.com/in/jungbeen-yu-614097146/
+- JungBeen Yu, MachineLearning Engineer
+-- symnoisy@gmail.com
+-- https://www.linkedin.com/in/jungbeen-yu-614097146/
 
 ## How to Start?
 
