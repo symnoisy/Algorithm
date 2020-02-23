@@ -19,7 +19,8 @@ Rest Service start. url=http://0.0.0.0:7777/swagger
 </code></pre>
 
 #### Enter the service
-
+go to http://0.0.0.0:7777/
 
 #### Enjoy REST APIs
+<img width="1240" alt="스크린샷 2020-02-23 오후 8 40 08" src="https://user-images.githubusercontent.com/9783553/75111405-c0df1400-567c-11ea-8b64-44641dd02023.png">
 <img width="725" alt="스크린샷 2020-02-23 오후 8 25 45" src="https://user-images.githubusercontent.com/9783553/75111389-7c537880-567c-11ea-9026-8c3c96c18d02.png">
