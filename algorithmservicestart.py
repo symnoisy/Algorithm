@@ -22,7 +22,7 @@ class Service():
         app.run(host=bind_addr, port=bind_port, debug=False)
 
     def start(self):
-        logger.info('RNN Service start.')
+        logger.info('Algorithm Rest API Service start.')
         self.restInit()
 
 
