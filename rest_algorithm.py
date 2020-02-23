@@ -4,7 +4,7 @@ import secrets
 
 from marshmallow import fields
 from rest import programmers
-from mgr_programmers import BiggestNumberModel, MarthonModel, PhoneBookModel
+from mgr_programmers import BiggestNumberModel, MarthonModel, PhoneBookModel, CamouflageModel
 from config_variable import logger
 from flask_restplus.resource import Resource
 from webargs.flaskparser import use_kwargs
@@ -20,6 +20,7 @@ biggestModel = BiggestNumberModel(programmers)
 #Hash
 marathonModel = MarthonModel(programmers)
 phoneBookModel = PhoneBookModel(programmers)
+camouflageModel = CamouflageModel(programmers)
 
 @programmers.route('/sorting/biggestnumber', methods=['GET'])
 class ReturnBiggestNumber(Resource):
@@ -79,4 +80,34 @@ class ReturnAllChallenges(Resource):
         phoneBook = phoneBook[1:-1].split(",")
 
         result = hashalgorithm.phoneBook(phoneBook)
+        return result
+
+@programmers.route('/hash/camouflage', methods=['GET'])
+class ReturnAllChallenges(Resource):
+    @programmers.doc(description='위장 문제, '
+                                 'https://programmers.co.kr/learn/courses/30/lessons/42578?language=python3')
+
+    @programmers.param('clothes', '입을 수 있는 옷 경우의 수', _in = 'query', type = str, required = True, default = '[["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]')
+    @use_kwargs({
+        'clothes': fields.Str(required=True, location='query')
+    })
+    @programmers.marshal_with(camouflageModel.get.model, code=200, mask=False)
+
+    def get(self, clothes):
+        hashalgorithm = HashAlgorithm()
+
+        reformClothes = clothes[1:-1]
+        reformClothes = reformClothes.replace("[", "")
+        reformClothes = reformClothes.split("],")
+
+        inputClothes = list()
+        for clothe in reformClothes:
+            clothe = clothe.replace(' ', '')
+            clothe = clothe.replace('"', '')
+            if "]" in clothe:
+                clothe = clothe.replace("]", "")
+
+            inputClothes.append(clothe.split(","))
+
+        result = hashalgorithm.camouflage(inputClothes)
         return result

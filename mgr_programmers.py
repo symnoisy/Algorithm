@@ -33,3 +33,14 @@ class PhoneBookModel(object):
         }
 
         self.get = FlaskModel(self, ns, 'get', {**primodel})
+
+
+class CamouflageModel(object):
+    def __init__(self, ns):
+
+        primodel = {
+            'clothes': fields.String(default='all', required=True, example='["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]'),
+            'result': fields.String(default='all', required=True, example='5')
+        }
+
+        self.get = FlaskModel(self, ns, 'get', {**primodel})
