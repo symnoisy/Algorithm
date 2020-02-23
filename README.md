@@ -18,3 +18,6 @@ Rest Service start. url=http://0.0.0.0:7777/swagger
 </code></pre>
 
 #### Enter the service
+
+
+#### Execute REST API
