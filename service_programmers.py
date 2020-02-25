@@ -6,7 +6,7 @@ from config_variable import logger
 
 class HashAlgorithm:
     '''
-    코딩테스트 연습 - 해시
+    코딩테스트 연습 - 해시 (3/4)
     '''
 
     def marathon(self, participant, completion):
@@ -297,7 +297,7 @@ class HashAlgorithm:
 
 class StackQueue:
     '''
-    코딩테스트 연습 - 스택/큐
+    코딩테스트 연습 - 스택/큐 (2/6)
     '''
 
     def top(self, heights):
@@ -459,10 +459,69 @@ class StackQueue:
         return answer
 
 
+class Heap:
+    '''
+    코딩테스트 연습 - 힙 (0/4)
+    '''
+    def __init__(self):
+        sample = 1
+
+
 class Sorting:
     '''
-    코딩테스트 연습 - 정렬
+    코딩테스트 연습 - 정렬 (3/3)
     '''
+
+
+    def numberK(self, array, commands):
+        '''
+        k번째 수
+
+        <문제 설명>
+        배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다.
+        예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면
+        array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
+        1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
+        2에서 나온 배열의 3번째 숫자는 5입니다.
+        배열 array, [i, j, k]를 원소로 가진 2차원 배열 commands가 매개변수로 주어질 때,
+        commands의 모든 원소에 대해 앞서 설명한 연산을 적용했을 때 나온 결과를 배열에 담아 return 하도록 solution 함수를 작성해주세요.
+
+        <제한사항>
+        array의 길이는 1 이상 100 이하입니다.
+        array의 각 원소는 1 이상 100 이하입니다.
+        commands의 길이는 1 이상 50 이하입니다.
+        commands의 각 원소는 길이가 3입니다.
+
+        <입출력 예>
+        array	                    commands	                            return
+        [1, 5, 2, 6, 3, 7, 4]	    [[2, 5, 3], [4, 4, 1], [1, 7, 3]]	    [5, 6, 3]
+
+        <입출력 예 설명>
+        [1, 5, 2, 6, 3, 7, 4]를 2번째부터 5번째까지 자른 후 정렬합니다. [2, 3, 5, 6]의 세 번째 숫자는 5입니다.
+        [1, 5, 2, 6, 3, 7, 4]를 4번째부터 4번째까지 자른 후 정렬합니다. [6]의 첫 번째 숫자는 6입니다.
+        [1, 5, 2, 6, 3, 7, 4]를 1번째부터 7번째까지 자릅니다. [1, 2, 3, 4, 5, 6, 7]의 세 번째 숫자는 3입니다.
+        :param array:
+        :param commands:
+        :return:
+        '''
+
+        result = []
+
+        try:
+            logger.info("NumberK job start. Input1=" + str(array) + ", Input2=" + str(commands))
+
+            for command_list in commands:
+                managed_list = array[command_list[0] - 1: command_list[1]]
+                managed_list.sort()
+                result.append(managed_list[command_list[2] - 1])
+
+            logger.info("NumberK job complete. Result=" + str(result))
+        except:
+            logger.error("NumberK job error. Input1=" + str(array) + ", Input2=" + str(commands))
+            return
+
+        return result
+
 
     def biggestNumber(self, numbers):
         '''
@@ -525,8 +584,216 @@ class Sorting:
         return resultRest
 
 
+    def hIndex(self, citations):
+        '''
+        H-Index
 
-if __name__ == '__main__':
-    hashalgorithm = HashAlgorithm()
-    result = hashalgorithm.bestAlbum(['classic', 'pop', 'classic', 'classic', 'pop'], [500, 600, 150, 800, 2500])
-    print(result)
+        <문제 설명>
+        H-Index는 과학자의 생산성과 영향력을 나타내는 지표입니다.
+        어느 과학자의 H-Index를 나타내는 값인 h를 구하려고 합니다.
+        위키백과1에 따르면, H-Index는 다음과 같이 구합니다.
+        어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고
+        나머지 논문이 h번 이하 인용되었다면 h가 이 과학자의 H-Index입니다.
+        어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때,
+        이 과학자의 H-Index를 return 하도록 solution 함수를 작성해주세요.
+
+        <제한사항>
+        과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.
+        논문별 인용 횟수는 0회 이상 10,000회 이하입니다.
+
+        <입출력 예>
+        citations	       return
+        [3, 0, 6, 1, 5]	    3
+
+        <입출력 예 설명>
+        이 과학자가 발표한 논문의 수는 5편이고, 그중 3편의 논문은 3회 이상 인용되었습니다.
+        그리고 나머지 2편의 논문은 3회 이하 인용되었기 때문에 이 과학자의 H-Index는 3입니다.
+        :return:
+        '''
+
+        result = 0
+
+        try:
+            logger.info("HIndex job start. Input=" + str(citations))
+
+            citations.sort()
+
+            lenCitations = len(citations)
+            for i in range(lenCitations):
+                if citations[i] >= lenCitations-i:
+                    result = lenCitations-i
+                    return result
+
+            logger.info("HIndex job start. Result=" + str(result))
+        except:
+            logger.error("HIndex job error. Input=" + str(citations))
+            return
+
+        return result
+
+
+class AbsoluteSearch:
+    '''
+    코딩테스트 연습 - 완전탐색 (1/4)
+    '''
+    def mockTest(self, answers):
+        '''
+        모의고사
+
+        <문제 설명>
+        수포자는 수학을 포기한 사람의 준말입니다.
+        수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다.
+        수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다.
+        1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+        2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+        3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+        1번 문제부터 마지막 문제까지의 정답이 순서대로 들은 배열 answers가 주어졌을 때,
+        가장 많은 문제를 맞힌 사람이 누구인지 배열에 담아 return 하도록 solution 함수를 작성해주세요.
+
+        <제한 조건>
+        시험은 최대 10,000 문제로 구성되어있습니다.
+        문제의 정답은 1, 2, 3, 4, 5중 하나입니다.
+        가장 높은 점수를 받은 사람이 여럿일 경우, return하는 값을 오름차순 정렬해주세요.
+
+        <입출력 예>
+        answers	        return
+        [1,2,3,4,5]	    [1]
+        [1,3,2,4,2]	    [1,2,3]
+
+        <입출력 예 설명>
+        입출력 예 #1
+        수포자 1은 모든 문제를 맞혔습니다.
+        수포자 2는 모든 문제를 틀렸습니다.
+        수포자 3은 모든 문제를 틀렸습니다.
+        따라서 가장 문제를 많이 맞힌 사람은 수포자 1입니다.
+
+        입출력 예 #2
+        모든 사람이 2문제씩을 맞췄습니다.
+        :param answers:
+        :return:
+        '''
+
+        result = []
+        scores = []
+        students = [[1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5], [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
+
+        try:
+            logger.info("MockTest job start. Input=" + str(answers))
+
+            for idx, student in enumerate(students):
+                lengap = math.ceil(len(answers) / len(student))
+
+                if lengap != 1:
+                    students[idx] = student * lengap
+
+            for student in students:
+                studentscore = 0
+
+                for idx, answer in enumerate(answers):
+                    if answer == student[idx]:
+                        studentscore += 1
+                    if idx == len(answers) - 1:
+                        scores.append(studentscore)
+
+            bestscore = max(scores)
+            for idx, score in enumerate(scores):
+                if scores[idx] == bestscore:
+                    result.append(idx + 1)
+
+            logger.info("MockTest job start. Result=" + str(result))
+        except:
+            logger.error("MockTest job error. Input=" + str(answers))
+            return
+
+        return result
+
+class Greedy:
+    '''
+    코딩테스트 연습 - 탐욕법 (0/7)
+    '''
+    def __init__(self):
+        sample = 1
+
+
+class DynamicProgramming:
+    '''
+    코딩테스트 연습 - 동적계획 (0/7)
+    '''
+    def __init__(self):
+        sample = 1
+
+
+class DFSBFS_Search:
+    '''
+    코딩테스트 연습 - 깊이/너비 우선 탐색 (1/4)
+    '''
+    def targetNumber(self, numbers, target):
+        '''
+        타겟 넘버
+
+        <문제 설명>
+        n개의 음이 아닌 정수가 있습니다.
+        이 수를 적절히 더하거나 빼서 타겟 넘버를 만들려고 합니다.
+        예를 들어 [1, 1, 1, 1, 1]로 숫자 3을 만들려면 다음 다섯 방법을 쓸 수 있습니다.
+        -1+1+1+1+1 = 3
+        +1-1+1+1+1 = 3
+        +1+1-1+1+1 = 3
+        +1+1+1-1+1 = 3
+        +1+1+1+1-1 = 3
+        사용할 수 있는 숫자가 담긴 배열 numbers,
+        타겟 넘버 target이 매개변수로 주어질 때
+        숫자를 적절히 더하고 빼서 타겟 넘버를 만드는 방법의 수를 return 하도록 solution 함수를 작성해주세요.
+
+        <제한사항>
+        주어지는 숫자의 개수는 2개 이상 20개 이하입니다.
+        각 숫자는 1 이상 50 이하인 자연수입니다.
+        타겟 넘버는 1 이상 1000 이하인 자연수입니다.
+
+        <입출력 예>
+        numbers	            target	    return
+        [1, 1, 1, 1, 1]	    3	        5
+        :return:
+        '''
+
+        result = 0
+        len_numbers = len(numbers)
+
+        try:
+            logger.info("TargetNumber job start. Input1=" + str(numbers) + ", Input2=" + str(target))
+
+            def operator(idx=0):
+                if idx < len_numbers:
+                    numbers[idx] *= 1
+                    operator(idx + 1)
+
+                    numbers[idx] *= -1
+                    operator(idx + 1)
+
+                elif sum(numbers) == target:
+                    nonlocal result
+                    result += 1
+
+            operator()
+
+            logger.info("TargetNumber job start. Result=" + str(result))
+        except:
+            logger.error("TargetNumber job error. Input1=" + str(numbers) + ", Input2=" + str(target))
+            return
+
+        return result
+
+
+class BinarySearch:
+    '''
+    코딩테스트 연습 - 이분탐색 (0/3)
+    '''
+    def __init__(self):
+        sample = 1
+
+
+class Graph:
+    '''
+    코딩테스트 연습 - 그래 (0/4)
+    '''
+    def __init__(self):
+        sample = 1

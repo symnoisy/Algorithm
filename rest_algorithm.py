@@ -14,32 +14,28 @@ from werkzeug.datastructures import FileStorage
 from service_programmers import HashAlgorithm, Sorting
 from time import gmtime, strftime
 
-#Sorting
-biggestModel = BiggestNumberModel(programmers)
 
-#Hash
+#Hash (3/4)
 marathonModel = MarthonModel(programmers)
 phoneBookModel = PhoneBookModel(programmers)
 camouflageModel = CamouflageModel(programmers)
 
-@programmers.route('/sorting/biggestnumber', methods=['GET'])
-class ReturnBiggestNumber(Resource):
-    @programmers.doc(description='가장 큰 수 문제, '
-                                 'https://programmers.co.kr/learn/courses/30/lessons/42746')
-    @programmers.param('numbers', '입력할 정수 리스트', _in='query', type=str, required=True, default="[6,10,2]")
-    @use_kwargs({
-        'numbers': fields.Str(required=True, location='query')
-    })
-    @programmers.marshal_with(biggestModel.get.model, code=200, mask=False)
-    def get(self, numbers):
-        sorting = Sorting()
+#Stack/Queue (2/6)
 
-        numbers = numbers[1:-1].split(",")
-        result = sorting.biggestNumber(numbers)
+#Heap (0/4)
 
-        return result
+#Sorting (3/3)
+biggestModel = BiggestNumberModel(programmers)
+
+#AbsoluteSearch (1/4)
+#Greedy (0/7)
+#DynamicProgramming (0/7)
+#DFS/BFS_Search (1/4)
+#BinarySearch (0/3)
+#Graph (0/4)
 
 
+#Hash REST API Service (3/4)
 @programmers.route('/hash/marathon', methods=['GET'])
 class ReturnAllChallenges(Resource):
     @programmers.doc(description='완주하지 못한 선수 문제, '
@@ -61,7 +57,6 @@ class ReturnAllChallenges(Resource):
 
         result = hashalgorithm.marathon(participant, completion)
         return result
-
 
 @programmers.route('/hash/phonebook', methods=['GET'])
 class ReturnAllChallenges(Resource):
@@ -111,3 +106,34 @@ class ReturnAllChallenges(Resource):
 
         result = hashalgorithm.camouflage(inputClothes)
         return result
+
+
+#Stack/Queue REST API Service (2/6)
+#Heap REST API Service (0/4)
+
+#Sorting REST API Service (3/3)
+@programmers.route('/sorting/biggestnumber', methods=['GET'])
+class ReturnBiggestNumber(Resource):
+    @programmers.doc(description='가장 큰 수 문제, '
+                                 'https://programmers.co.kr/learn/courses/30/lessons/42746')
+    @programmers.param('numbers', '입력할 정수 리스트', _in='query', type=str, required=True, default="[6,10,2]")
+    @use_kwargs({
+        'numbers': fields.Str(required=True, location='query')
+    })
+    @programmers.marshal_with(biggestModel.get.model, code=200, mask=False)
+    def get(self, numbers):
+        sorting = Sorting()
+
+        numbers = numbers[1:-1].split(",")
+        result = sorting.biggestNumber(numbers)
+
+        return result
+
+#AbsoluteSearch REST API Service (1/4)
+
+#Greedy REST API Service (0/7)
+#DynamicProgramming REST API Service (0/7)
+#DFS/BFS_Search REST API Service (1/4)
+
+#BinarySearch REST API Service (0/3)
+#Graph REST API Service (0/4)
