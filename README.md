@@ -8,7 +8,7 @@
 
 #### Service start
 <pre><code>
-> sudo python3 algorithmservistart.py
+> python3 algorithmservistart.py
 
 Algorithm Rest API Service start.
 Rest Service start. url=http://0.0.0.0:7777/swagger
