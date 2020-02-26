@@ -288,8 +288,8 @@ class ReturnMockTest(Resource):
 class ReturnMockTest(Resource):
     @programmers.doc(description='타겟 넘버 문제, '
                                  'https://programmers.co.kr/learn/courses/30/lessons/43165')
-    @programmers.param('numbers', '입력할 인용횟수 리스트', _in='query', type=str, required=True, default="[1,1,1,1,1]")
-    @programmers.param('target', '입력할 인용횟수 리스트', _in='query', type=str, required=True, default="3")
+    @programmers.param('numbers', '입력할 사용할 숫자 리스트', _in='query', type=str, required=True, default="[1,1,1,1,1]")
+    @programmers.param('target', '입력할 타겟 넘버 리스트', _in='query', type=str, required=True, default="3")
     @use_kwargs({
         'numbers': fields.Str(required=True, location='query'),
         'target': fields.Str(required=True, location='query')
