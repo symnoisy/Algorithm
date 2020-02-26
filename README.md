@@ -8,7 +8,8 @@
 
 #### Service start
 <pre><code>
-> python3 algorithmservistart.py
+# Execute Python3.6
+> python3.6 algorithmservistart.py
 
 Algorithm Rest API Service start.
 Rest Service start. url=http://0.0.0.0:7777/swagger
@@ -18,6 +19,21 @@ Rest Service start. url=http://0.0.0.0:7777/swagger
    Use a production WSGI server instead.
  * Debug mode: off
  * Running on http://0.0.0.0:7777/ (Press CTRL+C to quit)
+ 
+ or 
+ 
+# Execute BashScript
+> sh ./start_service.sh
+> cat algorithmservice.log
+
+Algorithm Rest API Service start.
+Rest Service start. url=http://0.0.0.0:7777/swagger
+ * Serving Flask app "algorithmservicestart" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:7777/ (Press CTRL+C to quit) 
 </code></pre>
 
 #### Enter the service
