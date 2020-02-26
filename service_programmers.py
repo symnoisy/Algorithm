@@ -116,9 +116,9 @@ class HashAlgorithm:
         try:
             logger.info("PhoneBook job start. Input=" + str(phoneBook))
 
-            phoneBook = [str(data) for data in phoneBook]
-
             result_rest['phoneBook'] = str(phoneBook)
+
+            phoneBook = [str(data) for data in phoneBook]
 
             for idxPhoneNumber, valuePhoneNumber in enumerate(phoneBook):
                 tmpPhoneBook = copy.deepcopy(phoneBook)
@@ -352,6 +352,7 @@ class StackQueue:
         '''
 
         data = list()
+        result = dict()
 
         try:
             logger.info("Top job start. Input=" + str(heights))
@@ -376,12 +377,15 @@ class StackQueue:
 
                     data.append(find)
 
+            result['heights'] = str(heights)
+            result['result'] = str(data)
+
             logger.info("Top job complete. Result=" + str(data))
         except:
             logger.error("Top job complete. Input=" + str(heights))
             return
 
-        return data
+        return result
 
 
     def functionDevelop(self, progresses, speeds):
@@ -418,6 +422,7 @@ class StackQueue:
         :param speeds:
         :return:
         '''
+        result = dict()
 
         spenddays = list()
         validate = list()
@@ -426,7 +431,7 @@ class StackQueue:
         remain = [100 - progress for progress in progresses]
 
         try:
-            logger.info("FunctionDevelop job start. Input=" + str(progresses, speeds))
+            logger.info("FunctionDevelop job start. Input=" + str(progresses) + str(speeds))
 
             for idx, speed in enumerate(speeds):
                 calc = math.ceil(remain[idx] / speed)
@@ -451,12 +456,16 @@ class StackQueue:
 
             answer.append(file)
 
-            logger.info("FunctionDevelop job complete. Result=" + str(answer))
+            result['progresses'] = str(progresses)
+            result['speeds'] = str(speeds)
+            result['result'] = str(answer)
+
+            logger.info("FunctionDevelop job complete. Result=" + str(progresses) + str(speeds))
         except:
             logger.error("FunctionDevelop job error. Input=" + str(progresses, speeds))
             return
 
-        return answer
+        return result
 
 
 class Heap:
@@ -505,22 +514,28 @@ class Sorting:
         :return:
         '''
 
+        resultRest = dict()
+
         result = []
 
         try:
-            logger.info("NumberK job start. Input1=" + str(array) + ", Input2=" + str(commands))
+            logger.info("NumberK job start. Input=" + str(array) + str(commands))
 
             for command_list in commands:
                 managed_list = array[command_list[0] - 1: command_list[1]]
                 managed_list.sort()
                 result.append(managed_list[command_list[2] - 1])
 
+            resultRest['array'] = str(array)
+            resultRest['commands'] = str(commands)
+            resultRest['result'] = str(result)
+
             logger.info("NumberK job complete. Result=" + str(result))
         except:
-            logger.error("NumberK job error. Input1=" + str(array) + ", Input2=" + str(commands))
+            logger.error("NumberK job error. Input=" + str(array) + str(commands))
             return
 
-        return result
+        return resultRest
 
 
     def biggestNumber(self, numbers):
@@ -555,6 +570,8 @@ class Sorting:
         try:
             logger.info("BiggestNumber job start. Input=" + str(numbers))
 
+            resultRest['numbers'] = str(numbers)
+
             numbers = [str(i) for i in numbers]
 
             for i in numbers:
@@ -573,7 +590,6 @@ class Sorting:
                 f_list.append(i[0])
 
             result = int(''.join(f_list))
-            resultRest['numbers'] = str(numbers)
             resultRest['result'] = str(result)
 
             logger.info("BiggestNumber job complete. Result=" + str(result))
@@ -611,25 +627,31 @@ class Sorting:
         :return:
         '''
 
+        resultRest = dict()
+
         result = 0
 
         try:
             logger.info("HIndex job start. Input=" + str(citations))
 
-            citations.sort()
+            resultRest['citations'] = str(citations)
 
+            citations.sort()
             lenCitations = len(citations)
             for i in range(lenCitations):
                 if citations[i] >= lenCitations-i:
                     result = lenCitations-i
-                    return result
 
+                    resultRest['result'] = str(result)
+                    return resultRest
+
+            resultRest['result'] = str(result)
             logger.info("HIndex job start. Result=" + str(result))
         except:
             logger.error("HIndex job error. Input=" + str(citations))
             return
 
-        return result
+        return resultRest
 
 
 class AbsoluteSearch:
@@ -673,12 +695,16 @@ class AbsoluteSearch:
         :return:
         '''
 
+        resultRest = dict()
+
         result = []
         scores = []
         students = [[1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5], [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
 
         try:
             logger.info("MockTest job start. Input=" + str(answers))
+
+            resultRest['answers'] = str(answers)
 
             for idx, student in enumerate(students):
                 lengap = math.ceil(len(answers) / len(student))
@@ -700,12 +726,14 @@ class AbsoluteSearch:
                 if scores[idx] == bestscore:
                     result.append(idx + 1)
 
+            resultRest['result'] = str(result)
+
             logger.info("MockTest job start. Result=" + str(result))
         except:
             logger.error("MockTest job error. Input=" + str(answers))
             return
 
-        return result
+        return resultRest
 
 class Greedy:
     '''
@@ -755,11 +783,16 @@ class DFSBFS_Search:
         :return:
         '''
 
+        resultRest = dict()
+
         result = 0
         len_numbers = len(numbers)
 
         try:
             logger.info("TargetNumber job start. Input1=" + str(numbers) + ", Input2=" + str(target))
+
+            resultRest['numbers'] = str(numbers)
+            resultRest['target'] = str(target)
 
             def operator(idx=0):
                 if idx < len_numbers:
@@ -775,12 +808,14 @@ class DFSBFS_Search:
 
             operator()
 
+            resultRest['result'] = str(result)
+
             logger.info("TargetNumber job start. Result=" + str(result))
         except:
             logger.error("TargetNumber job error. Input1=" + str(numbers) + ", Input2=" + str(target))
             return
 
-        return result
+        return resultRest
 
 
 class BinarySearch:
