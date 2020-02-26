@@ -47,4 +47,5 @@ go to http://0.0.0.0:7777/swagger
 
 [example2]
 
-<img width="725" alt="스크린샷 2020-02-23 오후 8 25 45" src="https://user-images.githubusercontent.com/9783553/75111389-7c537880-567c-11ea-9026-8c3c96c18d02.png">
+<img width="1223" alt="스크린샷 2020-02-27 오전 12 23 22" src="https://user-images.githubusercontent.com/9783553/75359198-67cee480-58f7-11ea-9ad6-149c0ae17b79.png">
+
