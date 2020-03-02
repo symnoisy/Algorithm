@@ -1,7 +1,7 @@
 import copy
 import math
 
-from config_variable import logger
+from .config_variable import logger
 
 
 class HashAlgorithm:
