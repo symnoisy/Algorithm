@@ -9,20 +9,7 @@
 #### Service start
 <pre><code>
 # Execute Docker
-> pwd
-~/Algorithm/util_bash
-> sh build_docker #docker build
-...
-> sh up_docker #container start
-Docker up start. Target_services=python
-Starting Algorithm ... done
-Attaching to Algorithm
-Algorithm |  * Serving Flask app "algorithmservicestart.py"
-Algorithm |  * Environment: production
-Algorithm |    WARNING: This is a development server. Do not use it in a production deployment.
-Algorithm |    Use a production WSGI server instead.
-Algorithm |  * Debug mode: off
-Algorithm |  * Running on http://0.0.0.0:7777/ (Press CTRL+C to quit)
+> docker pull symnoisy/python:1.0.0
 
 or
 
