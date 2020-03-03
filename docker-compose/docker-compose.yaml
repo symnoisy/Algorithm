@@ -1,9 +1,0 @@
-version: "3.4"
-services:
-  python:
-    build:
-      context: .
-    container_name: Algorithm
-    image: aimverctor/python:1.0.0
-    ports:
-      - 7777:7777
