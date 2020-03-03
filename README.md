@@ -10,6 +10,14 @@
 <pre><code>
 # Execute Docker
 > docker pull symnoisy/python:1.0.0
+....
+> docker run -p 7777:7777 symnoisy/python:1.0.0
+ * Serving Flask app "algorithmservicestart.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:7777/ (Press CTRL+C to quit)
 
 or
 
