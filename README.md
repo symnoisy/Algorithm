@@ -1,7 +1,7 @@
 # AlgorithmService
 알고리즘 문제를 풀이하고 REST API로 서비스를 개발합니다.
 - JungBeen Yu, MachineLearning/Backend Engineer
-- E-Mail: symnoisy@gmail.com
+- E-Mail: symnoisy@gmail.com / getchabug@gmail.com
 - LinkedIn: https://www.linkedin.com/in/jungbeen-yu-614097146/
 
 ## How to Start?
